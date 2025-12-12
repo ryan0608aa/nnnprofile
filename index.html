@@ -75,6 +75,13 @@
 
     /* Small interactive helpers */
     .small-muted{color:var(--muted);font-size:.95rem}
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.7);z-index:1200}
+    .lightbox.show{display:flex}
+    .lightbox-inner{position:relative;max-width:95%;max-height:95%;padding:12px}
+    .lightbox img{max-width:100%;max-height:80vh;border-radius:8px;display:block;box-shadow:0 20px 40px rgba(2,6,23,0.6)}
+    .lightbox-close{position:absolute;right:6px;top:6px;background:transparent;border:0;color:#fff;font-size:32px;line-height:1;cursor:pointer}
+    .lightbox-caption{color:#e6eef8;margin-top:8px;text-align:center}
   </style>
 </head>
 <body>
@@ -210,6 +217,15 @@
     
   </div>
 
+  <!-- Lightbox markup -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-inner" role="dialog" aria-modal="true">
+      <button class="lightbox-close" aria-label="Close">×</button>
+      <img id="lightbox-img" alt="Preview">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
   <script>
     // Animate skill bars when in view
     const bars = document.querySelectorAll('.bar > i');
@@ -236,6 +252,38 @@
         }
       })
     });
+
+    // Lightbox functionality for images (click to enlarge)
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeBtn = document.querySelector('.lightbox-close');
+
+    function openLightbox(src, alt){
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightboxCaption.textContent = alt || '';
+      lightbox.classList.add('show');
+      lightbox.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){
+      lightbox.classList.remove('show');
+      lightbox.setAttribute('aria-hidden','true');
+      lightboxImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    // Bind images (project cards + avatar)
+    document.querySelectorAll('.card img, .avatar img').forEach(img=>{
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', ()=> openLightbox(img.src, img.alt));
+    });
+
+    // Close handlers
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
   </script>
 </body>
 </html>
