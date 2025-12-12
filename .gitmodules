@@ -1,0 +1,3 @@
+[submodule "nnnprofile"]
+	path = nnnprofile
+	url = https://github.com/ryan0608aa/nnnprofile.git
