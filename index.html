@@ -3,9 +3,239 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>計算機</title>
+  <title>專案作品集 — 楊承恩</title>
+  <style>
+    :root{
+      --accent:#4f46e5;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --bg:#f8fafc;
+      --glass: rgba(255,255,255,0.6);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:#111827;}
+    .container{max-width:1000px;margin:28px auto;padding:20px}
+
+    /* Header / 個人資訊 */
+    header{display:flex;gap:20px;align-items:center;margin-bottom:18px}
+    .avatar{width:120px;height:120px;border-radius:12px;overflow:hidden;flex:0 0 120px;box-shadow:0 6px 18px rgba(15,23,42,0.08)}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .profile{flex:1}
+    .name{font-size:1.6rem;font-weight:700;margin:0}
+    .meta{color:var(--muted);margin-top:6px}
+    .contacts{margin-top:10px}
+    .contacts a{color:var(--accent);text-decoration:none;margin-right:12px}
+
+    /* Navigation */
+    nav{display:flex;gap:12px;margin:10px 0 20px}
+    nav a{color:var(--accent);text-decoration:none;padding:6px 10px;border-radius:8px;transition:background-color .18s}
+    nav a:hover{background:rgba(79,70,229,0.08)}
+
+    /* Sections */
+    section{background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.95));padding:18px;border-radius:12px;margin-bottom:18px;box-shadow:0 6px 18px rgba(15,23,42,0.04)}
+    h2{margin:0 0 12px 0}
+
+    /* Skills: progress bars + tags */
+    .skills-grid{display:flex;flex-wrap:wrap;gap:16px}
+    .skill{flex:1 1 220px;background:var(--card);padding:12px;border-radius:10px}
+    .skill .label{display:flex;justify-content:space-between;margin-bottom:8px;color:var(--muted)}
+    .bar{background:#e6e9ef;border-radius:999px;height:12px;overflow:hidden}
+    .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#06b6d4);width:0%;transition:width 900ms cubic-bezier(.2,.9,.2,1)}
+
+    .tag-cloud{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{background:rgba(79,70,229,0.08);color:var(--accent);padding:6px 10px;border-radius:999px;font-size:.9rem}
+
+    /* Timeline */
+    .timeline{position:relative;padding-left:18px}
+    .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:#e6e6e6;border-radius:2px}
+    .t-item{position:relative;padding:12px 12px 12px 28px;margin-bottom:6px}
+    .t-item .dot{position:absolute;left:-2px;top:18px;width:12px;height:12px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 4px rgba(79,70,229,0.06)}
+    .t-item time{display:block;color:var(--muted);font-size:.9rem}
+    .t-item h3{margin:4px 0}
+
+    /* Projects cards */
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 6px 14px rgba(15,23,42,0.06);transition:transform .18s,box-shadow .18s}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 30px rgba(15,23,42,0.12)}
+    .card img{width:100%;height:140px;object-fit:cover;display:block}
+    .card-body{padding:12px}
+    .card-title{font-weight:600;margin:0 0 6px}
+    .card-desc{color:var(--muted);font-size:.95rem;margin-bottom:8px}
+    .card-meta{font-size:.85rem;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:900px){.projects{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:600px){
+      header{flex-direction:row;align-items:flex-start}
+      .avatar{width:84px;height:84px;flex:0 0 84px}
+      .projects{grid-template-columns:1fr}
+      .container{padding:12px}
+      nav{overflow:auto}
+    }
+
+    /* Small interactive helpers */
+    .small-muted{color:var(--muted);font-size:.95rem}
+  </style>
 </head>
 <body>
-  <!-- 在這裡開始使用 Copilot 建立內容 -->
+  <div class="container">
+    <header>
+      <div class="avatar">
+        <img alt="示意大頭照" src="https://via.placeholder.com/400x400.png?text=Photo">
+      </div>
+      <div class="profile">
+        <h1 class="name">楊承恩</h1>
+        <div class="meta">學生 / 作品集展示</div>
+        <div class="contacts">
+          <a href="mailto:ryanyang0608@gmail.com">ryanyang0608@gmail.com</a>
+          <a href="https://github.com/ryan0608aa" target="_blank" rel="noopener">GitHub</a>
+          <a href="#projects">專案作品集</a>
+        </div>
+      </div>
+    </header>
+
+    <nav>
+      <a href="#personal">個人資訊</a>
+      <a href="#skills">技能</a>
+      <a href="#timeline">經歷</a>
+      <a href="#projects">專案作品集</a>
+    </nav>
+
+    <section id="personal">
+      <h2>個人資訊</h2>
+      <ul>
+        <li><strong>姓名：</strong>楊承恩</li>
+        <li><strong>Email：</strong><a href="mailto:ryanyang0608@gmail.com">ryanyang0608@gmail.com</a></li>
+        <li><strong>GitHub：</strong><a href="https://github.com/ryan0608aa" target="_blank" rel="noopener">ryan0608aa</a></li>
+        <li><strong>會的才藝：</strong>鋼琴、爵士鼓、排球</li>
+        <li><strong>重要成績：</strong>班際游泳比賽第二、大隊接力第三、學校爵士鼓成發</li>
+        <li><strong>語文/證照：</strong>多益 510 / 英文檢定：初級 / 作文佳作</li>
+      </ul>
+    </section>
+
+    <section id="skills">
+      <h2>技能</h2>
+      <div class="skills-grid">
+        <div class="skill">
+          <div class="label"><span>鋼琴</span><strong>70%</strong></div>
+          <div class="bar"><i data-width="70%"></i></div>
+          <div class="tag-cloud">
+            <span class="tag">古典</span>
+            <span class="tag">流行</span>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="label"><span>爵士鼓</span><strong>70%</strong></div>
+          <div class="bar"><i data-width="70%"></i></div>
+          <div class="tag-cloud">
+            <span class="tag">節奏</span>
+            <span class="tag">即興</span>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="label"><span>排球</span><strong>60%</strong></div>
+          <div class="bar"><i data-width="60%"></i></div>
+          <div class="tag-cloud">
+            <span class="tag">發球</span>
+            <span class="tag">接球</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <h2>經歷</h2>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="dot" aria-hidden="true"></div>
+          <time>國中 (2019 - 2022)</time>
+          <h3>競賽</h3>
+          <p class="small-muted">英文檢定初級拿滿分；100 公尺比賽第二名；參與科展並負責資料整理與簡報。</p>
+        </div>
+
+        <div class="t-item">
+          <div class="dot" aria-hidden="true"></div>
+          <time>高中 (2022 - 2025)</time>
+          <h3>自學程式</h3>
+          <p class="small-muted">自學 Python，製作 BMI 換算工具；負責海報與活動網站樣板設計，帶領小組完成專題。</p>
+        </div>
+
+        <div class="t-item">
+          <div class="dot" aria-hidden="true"></div>
+          <time>大學 (2025 - now)</time>
+          <h3>自製 Java 專案</h3>
+          <p class="small-muted">使用 Java 製作「終極密碼」專案；參與學校實習，開發簡易管理系統並學習版本控制流程。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>專案作品集</h2>
+      <div class="projects">
+        <article class="card">
+          <img alt="Podcast - 醫學資訊趨勢" src="https://via.placeholder.com/800x400.png?text=Podcast">
+          <div class="card-body">
+            <h3 class="card-title">錄製醫學資訊趨勢 Podcast</h3>
+            <p class="card-desc">簡介：主題聚焦「人工智慧在醫學影像診斷的應用與準確率提升」。我負責資料蒐集、訪談提綱與錄製流程，並整理研究重點供聽眾理解。</p>
+            <p class="card-reflection small-muted">心得：透過製作 podcast，我才發現醫學資訊對臨床與研究的重要性；也更了解 AI 如何輔助醫師提升診斷效率，這讓我認為醫學資訊將是未來重要領域。</p>
+            
+          </div>
+        </article>
+
+        <article class="card">
+          <img alt="BMI 計算器" src="https://via.placeholder.com/800x400.png?text=BMI+Calculator">
+          <div class="card-body">
+            <h3 class="card-title">BMI 換算（Python）</h3>
+            <p class="card-desc">簡介：我自訂六週 Python 自主學習計畫，學習基礎語法與函式後實作 BMI 換算工具，支援輸入身高、體重並輸出 BMI 值與健康建議。</p>
+            <p class="card-reflection small-muted">心得：這是我第一次系統性自學程式，成功從零實作出工具後，讓我對程式設計產生熱情，並鼓勵我繼續往軟體開發領域深造。</p>
+            
+          </div>
+        </article>
+
+        <article class="card">
+          <img alt="Java 終極密碼" src="https://via.placeholder.com/800x400.png?text=Java+Game">
+          <div class="card-body">
+            <h3 class="card-title">Java：終極密碼（遊戲）</h3>
+            <p class="card-desc">簡介：在大學課程中以 Java 開發一款文字／圖形混合的猜密碼遊戲（終極密碼），包含分數計算、難度調整與簡單介面互動。</p>
+            <p class="card-reflection small-muted">心得：我本身喜歡玩遊戲，實作遊戲讓我更懂得如何將遊戲邏輯轉為程式碼，也體會到使用者體驗（UX）在互動程式中的重要性，這個專案讓我對程式設計更加投入。</p>
+            
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    
+  </div>
+
+  <script>
+    // Animate skill bars when in view
+    const bars = document.querySelectorAll('.bar > i');
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const el = e.target;
+          const w = el.getAttribute('data-width') || '60%';
+          el.style.width = w;
+          io.unobserve(el);
+        }
+      })
+    },{threshold:0.25});
+    bars.forEach(b=>io.observe(b));
+
+    // Smooth scroll polyfill for old browsers when nav links clicked (modern browsers already support)
+    document.querySelectorAll('nav a, .contacts a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const href = a.getAttribute('href');
+        if(href && href.startsWith('#')){
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      })
+    });
+  </script>
 </body>
 </html>
